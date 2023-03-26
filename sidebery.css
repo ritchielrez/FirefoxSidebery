@@ -1,0 +1,196 @@
+/* ROOT */
+#root {
+  --tabs-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+@media (prefers-color-scheme:dark) {
+  #root {
+     --bg: #282828 !important;  /* Sideberry background color (follow instruction in userChrome.css):: default: #2b2a33 */
+
+     --tabs-fg: #ebdbb2 !important; /* Font color :: default: #323232 */
+     --tabs-bg-hover: rgba(255,255,255,0.135) !important; /* Tab background on hover :: default: rgba(255,255,255,0.1) */
+     --tabs-activated-bg: var(--tabs-bg-hover) !important; /* Active tab :: default: var(--tabs-bg-hover) */
+     --tabs-activated-shadow: none; !important; /* Active tab shadow :: default: none */
+
+     --btn-fg: #a9b665 !important; /* Button main color :: default: #fff; */
+     --nav-btn-fg: var(--btn-fg) !important; /* Nav Button main color :: default: var(--btn-fg); */
+    --border-color: #282828;
+  }
+
+  /* These exist for the bookmarks panel, not changed for light schemes */
+  #root { 
+     --bookmarks-folder-expanded-fg: #ebdbb2 !important;
+     --bookmarks-node-title-fg: #ebdbb2 !important;
+     --favicons-placeholder-bg: #282828 !important;
+     --bookmarks-folder-closed-fg: #fff !important;
+     --bookmarks-folder-expanded-fg-hover: #ccc !important;
+     --bookmarks-node-title-fg-hover: #ccc !important;
+     --favicons-placeholder-bg-hover: #ccc !important;
+     --bookmarks-folder-closed-fg-hover: #ccc !important;
+  }
+}
+
+#root .Tab {
+	--tabs-indent: 7px;
+}
+
+/* TABS */
+
+.Tab {
+	margin: auto;
+	width: 94%;
+	border-radius: 3px;
+}
+
+/* Tab Close and Context Buttons */
+.Tab  .close {
+    fill: var(--btn-fg);
+}
+
+.Tab  .close > svg {
+    fill: var(--btn-fg);
+    background: none;
+    opacity: 1;
+    height: 18px !important;
+width: 18px !important;
+}
+
+.Tab  .close > svg:hover {
+    background: rgba(0,0,0,0.075);
+    border-radius: 4px;
+}
+
+.PinnedTab  .close {
+display: none !important;
+}
+
+
+.Tab .title {
+	overflow: hidden !important;
+}
+
+.Tab .placeholder > svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--btn-fg);
+;}
+
+/* PINNED TABS */
+
+.PinnedDock {
+	background-color: var(--bg) !important;
+}
+
+.PinnedTab {
+	margin: 5px 0px 4px 6px;
+	border-radius: 3px;
+}
+
+/* NAV BAR */
+
+.NavigationBar {
+	height: 41px !important;
+	padding: 4.5px 0px 0px 4.5px !important;
+	background-color: #282828 !important;
+	margin-bottom: 5px;
+}
+
+.NavigationBar .panel-btn:hover {
+	border-radius: 3px !important;
+	background-color: var(--tabs-bg-hover) !important;
+}
+
+.NavigationBar .panel-btn[data-active="true"] {
+	border-radius: 3px !important;
+	background-color: var(--bg) !important;
+}
+
+.NavigationBar .panel-btn[data-active="true"]:hover {
+	border-radius: 3px !important;
+	background-color: var(--tabs-bg-hover) !important;
+}
+
+.NavigationBar .panel-btn > svg,
+.NavigationBar .panel-btn > img {
+	fill: var(--btn-fg) !important;
+}
+
+/* SIDEBAR HACK PATCHES */
+
+@media (max-width: 50px) {
+	/* Fix to tab tree identation when minimised */
+	#root:not(:hover) .Tab {
+		--tabs-indent: 0px;
+	}
+
+	.Tab[data-lvl] > div.lvl-wrapper {
+		right: -2px;
+	}
+
+	.Tab {
+		max-width: 34px;
+	}
+
+	.Tab .fav {
+		z-index: 1;
+	}
+
+	.Tab .audio {
+		z-index: 1;
+		margin-left: -12px;
+		height: 26px;
+	}
+
+	.Tab .title {
+		display: none;
+	}
+
+	.PinnedTab {
+		margin-left: 5px;
+	}
+
+	.NavigationBar .settings-btn {
+		display: none;
+	}
+}
+
+/* OPTIONAL */
+
+/* Disable these two snippets below to make pinned tabs wrap when minimised */
+.PinnedDock {
+	flex-wrap: nowrap !important;
+}
+
+.PinnedTab {
+	overflow: hidden !important;
+	min-width: var(--tabs-pinned-width) !important;
+}
+
+/* Optional patch for better tab notifications on pinned tabs */
+/*
+.PinnedTab[data-audible] .fav > img,
+.PinnedTab[data-muted] .fav > img,
+.PinnedTab[data-loading] .fav > img {
+  mask: none;
+}
+
+.PinnedTab .fav > img {
+  mask: none;
+}
+
+.PinnedTab[data-updated="true"] .fav > img {
+  mask: radial-gradient(circle at calc(100% - 2px) calc(100% - 2px),rgba(0,0,0,0.141),rgba(0,0,0,0.141) 4px,#000 5px,#000);
+}
+
+.PinnedTab .audio-badge {
+  top: 5px;
+}
+
+.PinnedTab .update-badge {
+  opacity: 0;
+}
+
+.PinnedTab[data-updated="true"] .update-badge {
+  opacity: 100;
+}
+*/
