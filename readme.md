@@ -43,5 +43,5 @@ Either add the firefox/treestyletabs.css to your TST addon preferences or import
 
 ## Credits
 
-- __[drannex42]__ — for his [FirefoxSidebar](https://github.com/drannex42/FirefoxSidebar)
-- __[mgastonportillo]__ — for his [gale for Firefox](https://github.com/mgastonportillo/gale-for-ff)
+- __drannex42__ — for [FirefoxSidebar](https://github.com/drannex42/FirefoxSidebar)
+- __mgastonportillo__ — for [gale for Firefox](https://github.com/mgastonportillo/gale-for-ff)
